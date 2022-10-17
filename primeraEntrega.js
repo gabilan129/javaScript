@@ -47,7 +47,7 @@ function elegirProductos() { // funcio que le pide al usuario que ingrese los pr
 
 
 
-        producto = prompt(`desea agregar otro producto a la lista \nCocacola \nPepsi \nPollo \Carne \nArroz \nHelado \nademas de su ultimo producto que fue ${producto} En caso de no querer seguir comprando escribir ESC `);
+        producto = prompt(`desea agregar otro producto a la lista \nCocacola \nPepsi \nPollo \nCarne \nArroz \nHelado \nademas de su ultimo producto que fue ${producto} En caso de no querer seguir comprando escribir ESC `);
 
     }
 
@@ -77,10 +77,6 @@ function aplicarIva() { //funcion que si la compra supera el valor a 1000 aplica
     }
 
 }
-
-
-
-
 
 let valorConTarjeta = 0;
 
