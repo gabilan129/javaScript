@@ -108,3 +108,4 @@ function formaDePagoTarjeta() {
 elegirProductos();
 aplicarIva()
 formaDePagoTarjeta()
+
