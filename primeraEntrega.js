@@ -82,6 +82,7 @@ let valorConTarjeta = 0;
 
 function formaDePagoTarjeta() {
 
+    
     let pagoTarjeta = prompt("desea pagar con tarjeta")
 
     if (pagoTarjeta == `si`) {
