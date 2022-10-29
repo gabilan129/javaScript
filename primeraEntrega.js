@@ -158,17 +158,17 @@ const ArrayGalletas = [];
 const Arrayfiambres = [];
 
 class Productos {
-    constructor(nombre, precio, calorias,tipo) {
+    constructor(nombre, precio, calorias, tipo,id) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.precio = parseInt(precio);
         this.calorias = calorias;
         this.tipo = tipo;
         this.vendido = false
     }
-    sumarIva(){
+    sumarIva() {
         this.precio = this.precio * 1.21;
     }
-    vender(){
+    vender() {
         this.vendido = true;
     }
     mostrarProducto() {
@@ -176,47 +176,161 @@ class Productos {
     }
 }
 
-let productoDeseado = prompt(`ingrese el producto deseado`)
 
-while(productoDeseado !="salir"){
 
-    
-    //Gaseosas
-    
-    const productoGaseosa1 = new Productos("cocacola", 320, 840, "gaseosa");
-    const productoGaseosa2 = new Productos("coca zero", 320, 0, "gaseosa");
-    const productoGaseosa3 = new Productos("pepsi", 230, 700, "gaseosa");
-    const productoGaseosa4 = new Productos("manaos", 110, 750, "gaseosa");
-    
-    ArrayGaseosas.push(productoGaseosa1, productoGaseosa2, productoGaseosa3, productoGaseosa4)
-console.log(ArrayGaseosas)
+//Gaseosas  
+const productoGaseosa1 = new Productos("cocacola", 320, 840, "gaseosa");
+const productoGaseosa2 = new Productos("coca zero", 320, 0, "gaseosa");
+const productoGaseosa3 = new Productos("pepsi", 230, 700, "gaseosa");
+const productoGaseosa4 = new Productos("manaos", 110, 750, "gaseosa");
 
+ArrayGaseosas.push(productoGaseosa1, productoGaseosa2, productoGaseosa3, productoGaseosa4)
 //Galletas
+const productoGalleta1 = new Productos("oreo", 130, 800, "galleta");
+const productoGalleta2 = new Productos("pepitos", 150, 820, "galleta");
+const productoGalleta3 = new Productos("don satur", 100, 500, "galleta");
+const productoGalleta4 = new Productos("criollitas", 50, 100, "galleta");
 
-const productoGalleta1 = new Productos("oreo",130,800,"galleta");
-const productoGalleta2 = new Productos("pepitos",150,820,"galleta");
-const productoGalleta3 = new Productos("don satur",100,500,"galleta");
-const productoGalleta4 = new Productos("criollitas",50,100,"galleta");
-
-ArrayGalletas.push(productoGalleta1,productoGalleta2,productoGalleta3,productoGalleta4)
-console.log(ArrayGalletas)
-
+ArrayGalletas.push(productoGalleta1, productoGalleta2, productoGalleta3, productoGalleta4)
 
 //Fiambres
+const productosFiambres1 = new Productos("salame", 600, 545, "fiambre");
+const productosFiambres2 = new Productos("queso", 800, 945, "fiambre");
+const productosFiambres3 = new Productos("jamon crudo", 900, 1045, "fiambre");
+const productosFiambres4 = new Productos("jamon cocido", 400, 245, "fiambre");
 
-const productosFiambres1 = new Productos("salame",600,545,"fiambre");
-const productosFiambres2 = new Productos("queso",800,945,"fiambre");
-const productosFiambres3 = new Productos("jamon crudo",900,1045,"fiambre");
-const productosFiambres4 = new Productos("jamon cocido",400,245,"fiambre");
-
-Arrayfiambres.push(productosFiambres1,productosFiambres2,productosFiambres3,productosFiambres4)
-
-console.log(Arrayfiambres)
-
-
-ArrayCarrito = ArrayGalletas.concat(ArrayGaseosas,Arrayfiambres)
+Arrayfiambres.push(productosFiambres1, productosFiambres2, productosFiambres3, productosFiambres4)
+ArrayCarrito = ArrayGalletas.concat(ArrayGaseosas, Arrayfiambres)
 
 console.log(ArrayCarrito)
 
+let venderProducto = prompt("ingresar producto que desea comprar \nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
+
+
+while (venderProducto != "esc") {
+    switch (venderProducto) {
+        case "cocacola":
+            productoGaseosa1.vender();
+            break;
+        case "coca zero":
+            productoGaseosa2.vender();
+            break;
+        case "pepsi":
+            productoGaseosa3.vender();
+            break;
+        case "manaos":
+            productoGaseosa4.vender();
+            break;
+        case "oreo":
+            productoGalleta1.vender();
+            break;
+        case "pepitos":
+            productoGalleta2.vender();
+            break;
+        case "don satur":
+            productoGalleta3.vender();
+            break;
+        case "criollitas":
+            productoGalleta4.vender();
+            break;
+        case "salame":
+            productosFiambres1.vender();
+            break;
+        case "queso":
+            productosFiambres2.vender()
+            break;
+        case "jamon crudo":
+            productosFiambres3.vender()
+            break;
+        case "jamon cocido":
+            productosFiambres4.vender()
+            break;
+    }
+    venderProducto = prompt("algo mas")
 }
 
+const productoVendido = ArrayCarrito.filter((pro) => pro.vendido == true)
+
+console.log(productoVendido)
+
+
+
+productoVendido.forEach((num) => {
+    num.precio = num.precio * 1.21
+    console.log(`el producto ${num.nombre} tiene un valor de ${num.precio} `)
+})
+
+
+
+// que cuando este en true me cree un nuevo array con los vendidos
+// probar una forma de usar reduce para sumar el precio.
+let resultado = productoVendido.reduce((total, producto) => total + producto.precio, 0); //0 es el inicio
+
+
+console.log(`su total a pagar es de ${resultado}` );
+
+
+
+
+
+//!ssssssssssss
+
+
+
+
+
+let valorConTarjeta = 0;
+
+function formaDePagoTarjeta() {
+
+
+    let pagoTarjeta = prompt("desea pagar con tarjeta")
+
+    if (pagoTarjeta == `si`) {
+        console.log("en cuantas cuotas desea pagar hasta un maximo de 12")
+        cuota()
+        for (let i = 1; i <= 12; i++) {
+            if (resultado) {
+                console.log(`el recargo en ${i} cuota es de %${i+3}`)
+
+                valorConTarjeta = resultado * (i + 3);
+                valorConTarjeta = valorConTarjeta / 100;
+                valorConTarjeta = valorConTarjeta + resultado;
+                console.log(valorConTarjeta.toFixed(1));
+
+                // console.log(valor)
+            }  else {
+                console.log("error")
+            }
+        }
+
+    } else {
+        console.log(`usted paga ${resultado}`)
+    }
+
+}
+
+formaDePagoTarjeta()
+
+
+function cuota() {
+
+
+    let cuotasApagar = parseInt(prompt("Elegir el numero de cuotas a pagar "));
+    let cuotaCuenta = (cuotasApagar + 1) - 1
+    for (let i = cuotasApagar; i <= cuotaCuenta; i++) {
+
+        if (resultado) {
+            valorConTarjeta = (resultado * (i + 3)) / 100
+            valorConTarjeta = valorConTarjeta + resultado
+            console.log(`Tu Total a pagar sera de ${valorConTarjeta}`)
+        }else {alert("error")}
+    }
+}
+
+
+
+
+
+
+console.log(`su total a pagar es de ${resultado}` );
