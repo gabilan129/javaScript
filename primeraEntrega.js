@@ -158,24 +158,25 @@ const ArrayGalletas = [];
 const Arrayfiambres = [];
 
 class Productos {
-    constructor(nombre, precio, calorias, tipo,id) {
+    constructor(nombre, precio, calorias, tipo) {
         this.nombre = nombre;
         this.precio = parseInt(precio);
         this.calorias = calorias;
         this.tipo = tipo;
-        this.vendido = false
+        this.vendido = false;
+        this.cantidad = 0
     }
     sumarIva() {
         this.precio = this.precio * 1.21;
     }
     vender() {
+        this.cantidad +=1;
         this.vendido = true;
     }
     mostrarProducto() {
         console.log(`el producto ${this.nombre} y tiene las siguientes calorias ${this.calorias}`);
     }
 }
-
 
 
 //Gaseosas  
@@ -256,7 +257,7 @@ console.log(productoVendido)
 
 
 productoVendido.forEach((num) => {
-    num.precio = num.precio * 1.21
+    num.precio = (num.precio * num.cantidad ) * 1.21
     console.log(`el producto ${num.nombre} tiene un valor de ${num.precio} `)
 })
 
@@ -267,7 +268,7 @@ productoVendido.forEach((num) => {
 let resultado = productoVendido.reduce((total, producto) => total + producto.precio, 0); //0 es el inicio
 
 
-console.log(`su total a pagar es de ${resultado}` );
+console.log(`su total a pagar es de ${resultado}`);
 
 
 
@@ -280,57 +281,52 @@ console.log(`su total a pagar es de ${resultado}` );
 
 
 let valorConTarjeta = 0;
+let pagoTarjeta;
 
 function formaDePagoTarjeta() {
 
-
-    let pagoTarjeta = prompt("desea pagar con tarjeta")
+    pagoTarjeta = prompt("desea pagar con tarjeta")
 
     if (pagoTarjeta == `si`) {
         console.log("en cuantas cuotas desea pagar hasta un maximo de 12")
-        cuota()
         for (let i = 1; i <= 12; i++) {
-            if (resultado) {
-                console.log(`el recargo en ${i} cuota es de %${i+3}`)
 
-                valorConTarjeta = resultado * (i + 3);
-                valorConTarjeta = valorConTarjeta / 100;
-                valorConTarjeta = valorConTarjeta + resultado;
-                console.log(valorConTarjeta.toFixed(1));
+            console.log(`el recargo en ${i} cuota es de %${i+3}`)
 
-                // console.log(valor)
-            }  else {
-                console.log("error")
-            }
+            valorConTarjeta = resultado * (i + 3);
+            valorConTarjeta = valorConTarjeta / 100;
+            valorConTarjeta = valorConTarjeta + resultado;
+            console.log(valorConTarjeta.toFixed(1));
+            
         }
-
-    } else {
+        cuota()
+    } else if (pagoTarjeta =="no"){
         console.log(`usted paga ${resultado}`)
-    }
+    }else {console.log("error")}
 
 }
 
-formaDePagoTarjeta()
 
 
 function cuota() {
-
-
+    
+    
     let cuotasApagar = parseInt(prompt("Elegir el numero de cuotas a pagar "));
     let cuotaCuenta = (cuotasApagar + 1) - 1
     for (let i = cuotasApagar; i <= cuotaCuenta; i++) {
-
+        
         if (resultado) {
             valorConTarjeta = (resultado * (i + 3)) / 100
             valorConTarjeta = valorConTarjeta + resultado
             console.log(`Tu Total a pagar sera de ${valorConTarjeta}`)
-        }else {alert("error")}
+        } else {
+            alert("error")
+        }
     }
 }
 
 
 
 
+formaDePagoTarjeta()
 
-
-console.log(`su total a pagar es de ${resultado}` );
