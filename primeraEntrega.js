@@ -34,43 +34,76 @@ class Productos {
 }
 
 
-        switch (producto.toLowerCase()) {
-            case "cocacola":
-                console.log("el valor de la Cocacola es de $320");
-                valor = valor + 320;
-                break;
-            case "pepsi":
-                console.log("el valor de la Pepsi es de $220");
-                valor = valor + 220;
-                break;
-            case "pollo":
-                console.log("el valor de la pollo es de $620");
-                valor = valor + 620;
-                break;
-            case "carne":
-                console.log("el valor de la carne es de $950");
-                valor = valor + 950;
-                break;
-            case "arroz":
-                console.log("el valor de la arroz es de $120");
-                valor = valor + 120;
-                break;
-            case "helado":
-                console.log("el valor de la helado es de $1220");
-                valor = valor + 1220;
-                break;
+//Gaseosas  
+const productoGaseosa1 = new Productos("cocacola", 320, 840, "gaseosa");
+const productoGaseosa2 = new Productos("coca zero", 320, 0, "gaseosa");
+const productoGaseosa3 = new Productos("pepsi", 230, 700, "gaseosa");
+const productoGaseosa4 = new Productos("manaos", 110, 750, "gaseosa");
 
-            default:
-                alert(`ingreso un caracter no valido`);
+ArrayGaseosas.push(productoGaseosa1, productoGaseosa2, productoGaseosa3, productoGaseosa4)
+//Galletas
+const productoGalleta1 = new Productos("oreo", 130, 800, "galleta");
+const productoGalleta2 = new Productos("pepitos", 150, 820, "galleta");
+const productoGalleta3 = new Productos("don satur", 100, 500, "galleta");
+const productoGalleta4 = new Productos("criollitas", 50, 100, "galleta");
 
-        }
+ArrayGalletas.push(productoGalleta1, productoGalleta2, productoGalleta3, productoGalleta4)
+
+//Fiambres
+const productosFiambres1 = new Productos("salame", 600, 545, "fiambre");
+const productosFiambres2 = new Productos("queso", 800, 945, "fiambre");
+const productosFiambres3 = new Productos("jamon crudo", 900, 1045, "fiambre");
+const productosFiambres4 = new Productos("jamon cocido", 400, 245, "fiambre");
+
+Arrayfiambres.push(productosFiambres1, productosFiambres2, productosFiambres3, productosFiambres4)
+ArrayCarrito = ArrayGalletas.concat(ArrayGaseosas, Arrayfiambres)
+
+console.log(ArrayCarrito)
+
+let venderProducto = prompt("ingresar producto que desea comprar \nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
 
 
-
-
-        producto = prompt(`desea agregar otro producto a la lista \nCocacola \nPepsi \nPollo \Carne \nArroz \nHelado \nademas de su ultimo producto que fue ${producto} En caso de no querer seguir comprando escribir ESC `);
-
+while (venderProducto != "esc") {
+    switch (venderProducto) {
+        case "cocacola":
+            productoGaseosa1.vender();
+            break;
+        case "coca zero":
+            productoGaseosa2.vender();
+            break;
+        case "pepsi":
+            productoGaseosa3.vender();
+            break;
+        case "manaos":
+            productoGaseosa4.vender();
+            break;
+        case "oreo":
+            productoGalleta1.vender();
+            break;
+        case "pepitos":
+            productoGalleta2.vender();
+            break;
+        case "don satur":
+            productoGalleta3.vender();
+            break;
+        case "criollitas":
+            productoGalleta4.vender();
+            break;
+        case "salame":
+            productosFiambres1.vender();
+            break;
+        case "queso":
+            productosFiambres2.vender()
+            break;
+        case "jamon crudo":
+            productosFiambres3.vender()
+            break;
+        case "jamon cocido":
+            productosFiambres4.vender()
+            break;
     }
+    venderProducto = prompt("algo mas")
+}
 
 const productoVendido = ArrayCarrito.filter((pro) => pro.vendido == true)
 
@@ -98,12 +131,16 @@ console.log(`su total a pagar es de ${resultado.toFixed(1)}`);
 
 //!ssssssssssss
 
+
+
+
+
 let valorConTarjeta = 0;
 let pagoTarjeta;
 
 function formaDePagoTarjeta() {
 
-    let pagoTarjeta = prompt("desea pagar con tarjeta")
+    pagoTarjeta = prompt("desea pagar con tarjeta")
 
     if (pagoTarjeta == `si`) {
         console.log("en cuantas cuotas desea pagar hasta un maximo de 12")
