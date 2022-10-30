@@ -63,46 +63,71 @@ console.log(ArrayCarrito)
 let venderProducto = prompt("ingresar producto que desea comprar \nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
 
 
+
+
 while (venderProducto != "esc") {
     switch (venderProducto) {
         case "cocacola":
             productoGaseosa1.vender();
+            console.log(`Sumo un producto Cocacola`)
             break;
         case "coca zero":
             productoGaseosa2.vender();
+            console.log(`Sumo un producto Coca Zero`)
+
             break;
         case "pepsi":
             productoGaseosa3.vender();
+            console.log(`Sumo un producto Pepsi`)
+
             break;
         case "manaos":
             productoGaseosa4.vender();
+            console.log(`Sumo un producto Manaos`)
+
             break;
         case "oreo":
             productoGalleta1.vender();
+            console.log(`Sumo un producto Oreo`)
+
             break;
         case "pepitos":
             productoGalleta2.vender();
+            console.log(`Sumo un producto Pepitos`)
+
             break;
         case "don satur":
             productoGalleta3.vender();
+            console.log(`Sumo un producto Don Satur`)
+
             break;
         case "criollitas":
             productoGalleta4.vender();
+            console.log(`Sumo un producto Criollitas`)
+
             break;
         case "salame":
             productosFiambres1.vender();
+            console.log(`Sumo un producto Salame`)
+
             break;
         case "queso":
             productosFiambres2.vender()
+            console.log(`Sumo un producto Queso`)
+
             break;
         case "jamon crudo":
             productosFiambres3.vender()
+            console.log(`Sumo un producto Jamon Crudo`)
+
             break;
         case "jamon cocido":
             productosFiambres4.vender()
+            console.log(`Sumo un producto Jamon Cocido`)
+
             break;
     }
-    venderProducto = prompt("algo mas")
+    venderProducto = prompt("Desea Seguir Comprando o escriba ESC para salir\nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
 }
 
 const productoVendido = ArrayCarrito.filter((pro) => pro.vendido == true)
