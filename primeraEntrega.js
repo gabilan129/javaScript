@@ -1,11 +1,8 @@
-//! codigo reutilizable
 alert("Bienvenido al sistema de Compra mi nombre es Gabriel y el tuyo")
 
 let nombreComprador = prompt("ingresa tu nombre")
 
 console.log(`Hola ${nombreComprador.toLowerCase()}`)
-
-//!
 
 
 const ArrayGaseosas = [];
@@ -21,18 +18,12 @@ class Productos {
         this.vendido = false;
         this.cantidad = 0
     }
-    sumarIva() {
-        this.precio = this.precio * 1.21;
-    }
     vender() {
-        this.cantidad +=1;
+        this.cantidad += 1;
         this.vendido = true;
     }
-    mostrarProducto() {
-        console.log(`el producto ${this.nombre} y tiene las siguientes calorias ${this.calorias}`);
-    }
-}
 
+}
 
 //Gaseosas  
 const productoGaseosa1 = new Productos("cocacola", 320, 840, "gaseosa");
@@ -62,103 +53,92 @@ console.log(ArrayCarrito)
 
 let venderProducto = prompt("ingresar producto que desea comprar \nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
 
+function elegirProducto() {
 
 
+    while (venderProducto != "esc") {
+        switch (venderProducto.toLocaleLowerCase()) {
+            case "cocacola":
+                productoGaseosa1.vender();
+                console.log(`Sumo un producto Cocacola`)
+                break;
+            case "coca zero":
+                productoGaseosa2.vender();
+                console.log(`Sumo un producto Coca Zero`)
 
-while (venderProducto != "esc") {
-    switch (venderProducto) {
-        case "cocacola":
-            productoGaseosa1.vender();
-            console.log(`Sumo un producto Cocacola`)
-            break;
-        case "coca zero":
-            productoGaseosa2.vender();
-            console.log(`Sumo un producto Coca Zero`)
+                break;
+            case "pepsi":
+                productoGaseosa3.vender();
+                console.log(`Sumo un producto Pepsi`)
 
-            break;
-        case "pepsi":
-            productoGaseosa3.vender();
-            console.log(`Sumo un producto Pepsi`)
+                break;
+            case "manaos":
+                productoGaseosa4.vender();
+                console.log(`Sumo un producto Manaos`)
 
-            break;
-        case "manaos":
-            productoGaseosa4.vender();
-            console.log(`Sumo un producto Manaos`)
+                break;
+            case "oreo":
+                productoGalleta1.vender();
+                console.log(`Sumo un producto Oreo`)
 
-            break;
-        case "oreo":
-            productoGalleta1.vender();
-            console.log(`Sumo un producto Oreo`)
+                break;
+            case "pepitos":
+                productoGalleta2.vender();
+                console.log(`Sumo un producto Pepitos`)
 
-            break;
-        case "pepitos":
-            productoGalleta2.vender();
-            console.log(`Sumo un producto Pepitos`)
+                break;
+            case "don satur":
+                productoGalleta3.vender();
+                console.log(`Sumo un producto Don Satur`)
 
-            break;
-        case "don satur":
-            productoGalleta3.vender();
-            console.log(`Sumo un producto Don Satur`)
+                break;
+            case "criollitas":
+                productoGalleta4.vender();
+                console.log(`Sumo un producto Criollitas`)
 
-            break;
-        case "criollitas":
-            productoGalleta4.vender();
-            console.log(`Sumo un producto Criollitas`)
+                break;
+            case "salame":
+                productosFiambres1.vender();
+                console.log(`Sumo un producto Salame`)
 
-            break;
-        case "salame":
-            productosFiambres1.vender();
-            console.log(`Sumo un producto Salame`)
+                break;
+            case "queso":
+                productosFiambres2.vender()
+                console.log(`Sumo un producto Queso`)
 
-            break;
-        case "queso":
-            productosFiambres2.vender()
-            console.log(`Sumo un producto Queso`)
+                break;
+            case "jamon crudo":
+                productosFiambres3.vender()
+                console.log(`Sumo un producto Jamon Crudo`)
 
-            break;
-        case "jamon crudo":
-            productosFiambres3.vender()
-            console.log(`Sumo un producto Jamon Crudo`)
+                break;
+            case "jamon cocido":
+                productosFiambres4.vender()
+                console.log(`Sumo un producto Jamon Cocido`)
 
-            break;
-        case "jamon cocido":
-            productosFiambres4.vender()
-            console.log(`Sumo un producto Jamon Cocido`)
-
-            break;
+                break;
+        }
+        venderProducto = prompt("Desea Seguir Comprando o escriba ESC para salir\nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
     }
-    venderProducto = prompt("Desea Seguir Comprando o escriba ESC para salir\nCocacola\nCoca Zero\nPepsi\nManaos\nOreo\nPepitos\nDon Satur\nCriollitas\nSalame\nQueso\nJamon Crudo\nJamon Cocido")
 }
+
+
+elegirProducto()
 
 const productoVendido = ArrayCarrito.filter((pro) => pro.vendido == true)
 
 console.log(productoVendido)
 
-//forEach para que el producto aplique un iva y luego acumule cantidad si se desea
-
 productoVendido.forEach((num) => {
-    num.precio = (num.precio * num.cantidad ) * 1.21
     console.log(`el producto ${num.nombre} tiene un valor de ${num.precio.toFixed()} `)
+    num.precio = (num.precio * num.cantidad) * 1.21
+    console.log(`El producto ${num.nombre} y compro ${num.cantidad}`)
 })
 
-
-
-// que cuando este en true me cree un nuevo array con los vendidos
-// probar una forma de usar reduce para sumar el precio.
-let resultado = productoVendido.reduce((total, producto) => total + producto.precio, 0); //0 es el inicio
+let resultado = productoVendido.reduce((total, producto) => total + producto.precio, 0);
 
 
 console.log(`su total a pagar es de ${resultado.toFixed(1)}`);
-
-
-
-
-
-//!ssssssssssss
-
-
-
-
 
 let valorConTarjeta = 0;
 let pagoTarjeta;
@@ -177,36 +157,38 @@ function formaDePagoTarjeta() {
             valorConTarjeta = valorConTarjeta / 100;
             valorConTarjeta = valorConTarjeta + resultado;
             console.log(valorConTarjeta.toFixed(1));
-            
+
         }
         cuota()
-    } else if (pagoTarjeta =="no"){
+    } else if (pagoTarjeta == "no") {
         console.log(`usted paga ${resultado}`)
-    }else {console.log("error")}
+    } else {
+        console.log("error ingrese opcion valida SI o NO")
+        formaDePagoTarjeta()
+    }
 
 }
 
 
 
 function cuota() {
-    
-    
+
+
     let cuotasApagar = parseInt(prompt("Elegir el numero de cuotas a pagar "));
     let cuotaCuenta = (cuotasApagar + 1) - 1
     for (let i = cuotasApagar; i <= cuotaCuenta; i++) {
-        
+
         if (resultado) {
             valorConTarjeta = (resultado * (i + 3)) / 100
             valorConTarjeta = valorConTarjeta + resultado
             console.log(`Tu Total a pagar sera de ${valorConTarjeta.toFixed(1)}`)
         } else {
-            alert("error")
+            alert("No Ingreso una opcion valida error")
         }
     }
 }
 
 
-
-
 formaDePagoTarjeta()
+
 
