@@ -56,7 +56,7 @@ let venderProducto = prompt("ingresar producto que desea comprar \nCocacola\nCoc
 function elegirProducto() {
 
 
-    while (venderProducto != "esc") {
+    while (venderProducto.toLocaleLowerCase() != "esc") {
         switch (venderProducto.toLocaleLowerCase()) {
             case "cocacola":
                 productoGaseosa1.vender();
